@@ -23,7 +23,6 @@ var lib = require('../../lib/advancedChainingLib');
 // Then, create a new API Key and add your API key to the
 // `advancedChainingLib.js` file. When creating an API key, you can give it
 // the `Predict on Public and Custom Models` scope
-
 var searchCommonConceptsFromGitHubProfiles = function (githubHandles) {
 };
 

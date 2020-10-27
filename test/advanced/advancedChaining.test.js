@@ -49,7 +49,7 @@ describe('Advanced chaining', function() {
       searchCommonConceptsFromGitHubProfiles(['danthareja', 'sunny-g'])
         .then(function(tags) {
           expect(tags).to.satisfy(tags => {
-            return tags.includes("men") || tags.includes("man");
+            return tags.includes('men') || tags.includes('man');
           });
           done();
         })

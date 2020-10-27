@@ -23,7 +23,21 @@ var lib = require('../../lib/advancedChainingLib');
 // Then, create a new API Key and add your API key to the
 // `advancedChainingLib.js` file. When creating an API key, you can give it
 // the `Predict on Public and Custom Models` scope
+
 var searchCommonConceptsFromGitHubProfiles = function (githubHandles) {
+  return new Promise((resolve, reject) => {
+    var promises = [];
+    for (var i = 0; i < githubHandles.length; i++) {
+      promises.push(lib.getGitHubProfile(githubHandles[i]));
+    }
+    Promise.all(promises).then((profiles) => {
+      var avatars = [];
+      profiles.forEach(profile => avatars.push(lib.predictImage(profile.avatarUrl)));
+      Promise.all(avatars).then((concepts) => {
+        resolve(lib.getIntersection(concepts));
+      });
+    });
+  });
 };
 
 // Export these functions so we can unit test them
